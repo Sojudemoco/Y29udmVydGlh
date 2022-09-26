@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<!--onhover more buttons for id and cdd
+sort search-->
+
+<head>
+  <meta charset="utf-8">
+  <title>Back Office</title>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"
+    integrity="sha512-Eezs+g9Lq4TCCq0wae01s9PuNWzHYoCMkE97e2qdkYthpI0pzC3UGB03lgEHn2XM85hDOUF6qgqqszs+iXU4UA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </script>
+  <script src="index.js" type="text/javascript" charset="utf-8"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@500&display=swap');
+
+
+#myBtn {
+  display: absolute; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 2px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */ 
+  border-radius:50%;
+  font-size: 18px; /* Increase font size */
+height: 35px;
+  width: 35px;
+  transition-duration: 0.3s;
+}
+
+#myBtn:hover {
+-webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
+}
+
+
+
+
+
+.copied {
+
+  margin: 20px;
+  padding: 30px 20px;
+background-color: #282c34;
+color: #888c93;
+ font-family: "Mulish", sans-serif;
+ border-radius: 7px;
+}
+
+textarea {
+  resize: none;
+  margin: 20px;
+  margin-bottom: -20px;
+  padding: 20px 20px;
+background-color: #282c34;
+color: #888c93;
+ font-family: "Mulish", sans-serif;
+ border-radius: 7px;
+ overflow: hidden;
+
+margin-bottom: auto;
+
+}
+
+
+.convertiaimg {
+  height: 60px;
+  width: 60px;
+}
+
+.tpimg {
+  height: 60px;
+  width: 70px;
+}
+
+button {
+  background-color: #04524c;
+  border-radius: 15px;
+  position: relative;
+  bottom: 18px;
+  padding: 15px 32px;
+  cursor: pointer;
+  transition-duration: 0.15s;
+  width: 200px;
+   font-family: "Mulish", sans-serif;
+}
+
+button:hover {
+  background-color: #3cd184; /* Green */
+  color: white;
+}
+
+.title {
+  padding: 15px;
+  color: #F9F6EE;
+}
+
+.lista {
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.lista .item {
+  background-color:#7ca2a4;
+  margin-bottom: 12px;
+  border-radius: 0px 5px 0px 3px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.lista .item:hover {
+  transition-duration: 0.5s;
+  box-shadow: -10px -9px 5px 0px rgba(124,212,132,0.66);
+-webkit-box-shadow: -10px -9px 5px 0px rgba(124,212,132,0.66);
+-moz-box-shadow: -10px -9px 5px 0px rgba(124,212,132,0.66);
+  border-radius: 0px 5px 0px 3px;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+
+
+body {
+ background-color: #042020;
+ text-align: center;
+ font-family: "Mulish", sans-serif;
+overflow: scroll;
+}
+
+
+.filtro{
+    display: none;
+}
+
+.form{
+		width: 100%;
+		height: 50px;
+		max-width: 400px;
+		position: relative;
+		overflow: hidden;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+	}
+	.form input{
+		width: 100%;
+		height: 100%;
+		background: none;
+		color: #fff;
+		padding-top: 10px;
+		border: none;
+		outline: 0px;
+
+	}
+	.form .lbl-nombre{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		border-bottom: 1px solid #c7c7c7;
+	}
+	.form .lbl-nombre:after{
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -1px;
+		width: 100%;
+		height: 100%;
+		border-bottom: 3px solid #84d484;
+		transform: translateX(-100%);
+		transition: all 0.3s ease;
+	}
+	.text-nomb{
+		position: absolute;
+		bottom: 5px;
+		left: 0;
+		transition: all 0.3s ease;
+		color: #fff;
+	}
+	.form input:focus + .lbl-nombre .text-nomb,.form input:valid + .lbl-nombre .text-nomb{
+		transform: translateY(-150%);
+		font-size: 14px;
+		color: #84d484;
+	}
+	.form input:focus + .lbl-nombre:after, .form input:valid + .lbl-nombre:after{
+		transform: translateX(0%);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3c6c64;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+
+
+
+
+</style>
+
+
+
+<script>
+
+
+
+
+
+
+function full_docsf() {
+  var copyText = document.getElementById("full_docs");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function atcf() {
+  var copyText = document.getElementById("atc");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function callmcf() {
+  var copyText = document.getElementById("callmc");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function sendinef() {
+  var copyText = document.getElementById("sendine");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function sendcddf() {
+  var copyText = document.getElementById("sendcdd");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+
+function sendfisicaf() {
+  var copyText = document.getElementById("sendfisica");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+
+function sendmoralf() {
+  var copyText = document.getElementById("sendmoral");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+
+
+
+function dudasf() {
+  var copyText = document.getElementById("dudas");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function omisof() {
+  var copyText = document.getElementById("omiso");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function ventasf() {
+  var copyText = document.getElementById("ventas");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function cddvencidof() {
+  var copyText = document.getElementById("cddvencido");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function cddarribaf() {
+  var copyText = document.getElementById("cddarriba");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function cddabajof() {
+  var copyText = document.getElementById("cddabajo");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function idatrasf() {
+  var copyText = document.getElementById("idatras");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function idenfrentef() {
+  var copyText = document.getElementById("idenfrente");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function idclaraf() {
+  var copyText = document.getElementById("idclara");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function idvencidaf() {
+  var copyText = document.getElementById("idvencida");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function iclarasf() {
+  var copyText = document.getElementById("iclaras");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function blueholef() {
+  var copyText = document.getElementById("bluehole");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function esperadocsf() {
+  var copyText = document.getElementById("esperadocs");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function carrendamientof() {
+  var copyText = document.getElementById("carrendamiento");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function statusinstalacionf() {
+  var copyText = document.getElementById("statusinstalacion");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function factibilidadf() {
+  var copyText = document.getElementById("factibilidad");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function ubicacionf() {
+  var copyText = document.getElementById("ubicacion");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function vercoberturaf() {
+  var copyText = document.getElementById("vercobertura");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function nocoberturaf() {
+  var copyText = document.getElementById("nocobertura");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function dondepagarf() {
+  var copyText = document.getElementById("dondepagar");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function escuelaf() {
+  var copyText = document.getElementById("escuela");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function fisicaempresarialf() {
+  var copyText = document.getElementById("fisicaempresarial");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function sindicatosf() {
+  var copyText = document.getElementById("sindicatos");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function empresarialf() {
+  var copyText = document.getElementById("empresarial");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function facturarf() {
+  var copyText = document.getElementById("facturar");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function matutinof() {
+  var copyText = document.getElementById("matutino");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+}
+function vespertinof() {
+  var copyText = document.getElementById("vespertino");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+
+
+function statusf() {
+  var copyText = document.getElementById("status");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+function cddilegiblef() {
+  var copyText = document.getElementById("cddilegible");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+function huerfanaf() {
+  var copyText = document.getElementById("huerfana");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+
+function moralmcf() {
+  var copyText = document.getElementById("moralmc");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+function moralASAPf() {
+  var copyText = document.getElementById("moralASAP");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+function ganadasf() {
+  var copyText = document.getElementById("ganadas");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+function creditopdf() {
+  var copyText = document.getElementById("creditopd");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+
+
+
+
+//-----------------------------------
+/*
+BASIC SEARCH FOR SCRIPT RESPONSES
+
+
+
+*/
+
+
+document.addEventListener("keyup", e => {
+
+  if (e.target.matches("#buscador")) {
+
+    if (e.key === "Escape") e.target.value = ""
+
+    document.querySelectorAll(".item").forEach(reply => {
+
+      reply.textContent.toLowerCase().includes(e.target.value.toLowerCase())
+        ? reply.classList.remove("filtro")
+        : reply.classList.add("filtro")
+    })
+
+  }
+
+
+})
+
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+</script>
+
+
+
+
+
+</head>
+
+<body>
+
+<img src="https://raw.githubusercontent.com/Sojudemoco/Y29udmVydGlh/main/convertia.png" onclick="topFunction()" id="myBtn">
+
+
+  <div class="titlee">
+
+
+    <h1 class="title"> <img class="convertiaimg"
+        src="https://raw.githubusercontent.com/Sojudemoco/Y29udmVydGlh/main/convertia.png" alt=""> Script Back Office
+      <img class="tpimg"
+        src="https://raw.githubusercontent.com/Sojudemoco/Y29udmVydGlh/main/kisspng-logo-total-play-telecomunicaciones-s-a-de-c-v-m-esperanza-azteca-5be82cfddc78d0.6817442915419425259031.png"
+        alt=""></h1>
+
+    <div class="">
+
+
+      <form class="form">
+        <input type="text" id="buscador" autocomplete="off" required>
+        <label class="lbl-nombre">
+          <span class="text-nomb">Buscar respuestas...</span>
+        </label>
+      </form>
+    </div>
+
+  </div>
+  <div class="lista">
+
+    <div class="item">
+
+      <textarea id="full_docs" rows="2"
+        columns="3">Estimado cliente, su documentación se encuentra *completa*. En cuanto sea aprobada, recibirá una siguiente llamada por parte del área de mesa de control para agendar fecha de instalación.
+
+Esta área solicitará la siguiente información al momento de comunicarse:
+**Nombre completo del titular; domicilio de instalación con entre calles;
+**Datos fiscales (en caso de aplicar); número de contacto;
+**Correo electrónico; servicios contratados;
+**Paquetes adicionales (en caso de aplicar); precios
+**Plazos; promociones; condiciones de contratación;
+**Forma de pago; domiciliación del servicio;
+**Costo de conexión; fecha de instalación;
+**Pago de renta por adelantado; agendamiento;
+Es importante tener esta información para continuar con el proceso de instalación.
+
+*De recibir algún mensaje solicitando documentos o seguimiento de su cuenta haga caso omiso, el ejecutivo que le atendió se comunicará con usted en caso de que se le solicite algo más.*
+
+*En caso de no recibir la llamada de mesa de control puede usted comunicarse para agendar su instalación al siguiente número 8003300000 opción 1.*
+
+*POR FAVOR NO REENVIAR DOCUMENTOS A NINGUN OTRO NUMERO AUNQUE SE LOS SOLICITEN POR SEGURIDAD DE SU INFORMACION*</textarea>
+      <button onclick="full_docsf()">Documentación Completa </button>
+    </div>
+    <div class="item">
+      <textarea id="atc" rows="2" columns="3">Estimado cliente, es necesario que se comunique al centro de atención a clientes:
+**CDMX y área metropolitana: 5515798000
+**Interior: 8005100510
+**Chat online: http://www.totalplay.com.mx/
+**https://totalplay.com.mx/ayuda
+*Aquí es el área de validación de documentos.*</textarea>
+      <button onclick="atcf()"> Atencion a Clientes </button>
+
+    </div>
+
+
+
+
+
+    <div class="item">
+      <textarea id="callmc" rows="2"
+        columns="3">Estimado cliente, ya puede comunicarse a Mesa de Control al número *8003300000 opción 1* para *agendar su instalación*.</textarea>
+      <button onclick="callmcf()"> Llamar a MC </button>
+
+    </div>
+
+
+    <div class="item">
+      <textarea id="sendine" rows="2" columns="3">Estimado cliente, en espera de una identificación *vigente y legible por ambos lados, a color NO COPIAS*, *SIN HOLOGRAMAS* pudiendo ser:
+
+**IFE o INE, licencia de manejo
+**Cédula profesional (no mayor a 10 años)
+**Cartilla militar (no mayor a 10 años)
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3)</textarea>
+      <button onclick="sendinef()">Enviar Identificación </button>
+
+    </div>
+    <div class="item">
+      <textarea id="sendcdd" rows="2"
+        columns="3">Apreciable cliente, hace falta un comprobante de domicilio *no mayor a 2 meses al día de hoy*, por ejemplo: 
+
+**Recibo de luz, predial, agua, gas natural (No LP), telefónico (fijo o celular), TV de paga; 
+**Estados de cuenta bancarios, de tiendas departamentales, AFORE (a nombre de titular)
+**Contrato de compra-venta (completo y firmado con sellos notariales);
+**Contrato de arrendamiento (deberá incluir identificación de arrendador, estar completo, escrito a computadora y firmado con una antigüedad de por lo menos 15 días)</textarea>
+      <button onclick="sendcddf()"> Enviar CDD </button>
+
+    </div>
+
+
+
+    <div class="item">
+      <textarea id="sendfisica" rows="2" columns="3">Apreciable cliente, por este medio puede hacer llegar su documentación, para continuar con el proceso de su contratación; enviando un comprobante de domicilio no mayor a 2 meses al día de hoy, por ejemplo:
+
+**Recibo de luz, predial, agua, *gas natural (No LP)*, telefónico (fijo o celular), TV de paga; 
+**Estados de cuenta bancarios
+**Contrato de compra-venta, de arrendamiento (deberá incluir identificación de arrendador)
+
+Identificación oficial vigente por ambos lados, pudiendo ser:
+
+**IFE o INE, cédula profesional, licencia de manejo
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3) 
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx
+
+Quedo en espera.</textarea>
+      <button onclick="sendfisicaf()"> Documentación FISICA </button>
+
+    </div>
+    <div class="item">
+      <textarea id="sendmoral" rows="2" columns="3">Apreciable Cliente, los documentos requeridos para la contratación del servicio como Persona Moral son los siguientes: 
+
+-Comprobante de Domicilio (no mayor a 2 meses al día de hoy):
+
+**Recibo de luz, predial, agua, gas natural (No LP), telefónico (fijo o celular), TV de paga; 
+**Estados de cuenta bancarios, de tiendas departamentales, AFORE (a nombre de titular)
+**Contrato de compra-venta (completo y firmado con sellos notariales);
+**Contrato de arrendamiento (deberá incluir identificación de arrendador, estar completo, escrito a computadora y firmado con una antigüedad de por lo menos 15 días)
+
+-Identificación oficial de Apoderado Legal o Representante Legal (Vigente) *A color NO COPIAS* *Sin flash* *Que se vean las 4 esquinas*: 
+
+**IFE o INE, licencia de manejo
+**Cédula profesional (no mayor a 10 años)
+**Cartilla militar (no mayor a 10 años)
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3) 
+
+-Constancia de Situacion Fiscal, deberá incluir la dirección Fiscal (Formato PDF directamente del SAT)
+
+-Acta constitutiva de la empresa completa.
+
+-RPP (Registro Público de la Propiedad y Comercio)
+
+En caso de enviar identificación oficial de representante legal y el mismo no se encuentra en el acta constitutiva, *deberá enviar poder notarial.*
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx
+
+Quedamos en espera.</textarea>
+      <button onclick="sendmoralf()">Documentación MORAL </button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="dudas" rows="2"
+        columns="3">Estimado cliente, Temas relacionados con su *Agendamiento y/o instalación al siguiente número 800 330 0000 opción 1. Saludos.* *Tener a la mano su número de cuenta* *Si suena una grabación favor de permanecer en línea ya que los agentes se encuentran ocupados*
+*Aquí es el área de validación de documentos.*
+
+Estimado cliente, en caso de que Mesa de Control aún no se ponga en contacto con usted, lo invito a que se comunique al número *800 330 0000 Opción 1* para que le brinden la información completa y exacta de su instalación, ya que este número es exclusivamente para la *recepción y validación de documentos.*</textarea>
+      <button onclick="dudasf()">Dudas instalación / Validacion</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="omiso" rows="2"
+        columns="3">Apreciable cliente haga caso omiso del mensaje, su documentación se encuentra completa.</textarea>
+      <button onclick="omisof()">Caso omiso Docs </button>
+
+    </div>
+
+<div class="item">
+
+      <textarea id="cddilegible" rows="2" columns="3">
+Estimado cliente, sería tan amable de enviar la hoja completa de su comprobante de domicilio de manera legible,  el que nos hace llegar no se aprecia bien, esto para poder continuar con su trámite. *Que se vean las 4 esquinas de su documento*
+</textarea>
+      <button onclick="cddilegiblef()">CDD Ilegible
+</button>
+
+    </div>
+
+    <div class="item">
+
+      <textarea id="ventas" rows="2" columns="3">
+Favor de comunicarse al 800 4445119 para que el atienda un ejecutivo. *Aquí es el área de validación de documentos.*
+	</textarea>
+      <button onclick="ventasf()">Ventas</button>
+
+    </div>
+
+
+
+
+    <div class="item">
+
+      <textarea id="cddvencido" rows="2" columns="3">
+Apreciable cliente, por favor apoyeme con el envío de su comprobante de domicilio vigente *(no mayor a 2 meses al día de hoy)*, ya que el que nos hizo llegar esta vencido, esto para *continuar* con su trámite.</textarea>
+      <button onclick="cddvencidof()">CDD Vencido</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="cddarriba" rows="2" columns="3">
+Estimado cliente, seria tan amable de enviar la *mitad de arriba* de su *comprobante de domicilio*, por favor, ya que este se aprecia borroso.
+*que se vean las dos esquinas superiores*</textarea>
+      <button onclick="cddarribaf()">CDD Arriba</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="cddabajo" rows="2" columns="3">Apreciable cliente, seria tan amable de enviar la *mitad de abajo* de su *comprobante de domicilio*, por favor, ya que este se aprecia borroso.
+Le pedimos asegurarse de *que se vean las dos esquinas inferiores*</textarea>
+      <button onclick="cddabajof()">CDD Abajo</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="idatras" rows="2"
+        columns="3">Apreciable cliente, solicito de su apoyo para el envío de su identificación por la parte de atrás, ya que algunos datos se aprecian ilegibles, y poder continuar con su trámite. *A color NO COPIAS* *Sin flash. SIN HOLOGRAMAS* *Que se vean las 4 esquinas*</textarea>
+      <button onclick="idatrasf()">Identificacion ATRAS</button>
+
+    </div>
+
+
+    <div class="item">
+
+      <textarea id="idenfrente" rows="2" columns="3">
+Estimado cliente, es necesario el envío de su identificación por la parte de enfrente, ya que algunos datos se aprecian ilegibles, y poder continuar con su trámite. 
+*A color NO COPIAS* 
+*Sin flash. SIN HOLOGRAMAS* 
+*Que se vean las 4 esquinas*
+Saludos</textarea>
+      <button onclick="idenfrentef()">Identificacion FRENTE</button>
+
+    </div>
+
+
+    <div class="item">
+
+      <textarea id="idclara" rows="2" columns="3">
+Apreciable cliente, sería tan amable de enviar su identificación por ambos lados y de manera legible,*SIN FLASH* el que nos hace llegar no se aprecia bien, esto para poder continuar con su trámite. 
+*A color NO COPIAS* 
+*Sin flash. SIN HOLOGRAMAS* 
+*Que se vean las 4 esquinas*
+Saludos</textarea>
+      <button onclick="idclaraf()">Identificación CLARA</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="idvencida" rows="2" columns="3">Apreciable cliente, por favor apoyeme con el envío de su identificación oficial vigente, ya que la que nos hizo llegar esta vencida, esto para continuar con su trámite. 
+*A color NO COPIAS* 
+*Sin flash. SIN HOLOGRAMAS*
+*Que se vean las 4 esquinas*
+Saludos</textarea>
+      <button onclick="idvencidaf()">Identificación VENCIDA</button>
+
+    </div>
+
+
+
+    <div class="item">
+
+      <textarea id="facturar" rows="2"
+        columns="3">Estimado cliente, para poder facturar es necesario el envio de su *Constancia de Situacion Fiscal* de manera completa, para continuar con el proceso de instalación.</textarea>
+      <button onclick="facturarf()">Facturar (RFC)</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="iclaras" rows="2"
+        columns="3">Apreciable cliente sería tan amable de reenviar las imágenes completas y de manera clara, las que nos envió son ilegibles, esto para dar continuidad a su trámite. *Sin Flash* *Que se vean las 4 esquinas de los documentos*</textarea>
+      <button onclick="iclarasf()">Imagenes Claras</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="bluehole" rows="2" columns="3">Apreciable cliente, por este medio puede hacer llegar su documentación, para continuar con el proceso de su contratación; enviando un 
+*Comprobante de domicilio no mayor a 2 meses al día de hoy*:
+
+**Recibo de luz.
+
+*Identificación oficial vigente* *A color NO COPIAS* *Sin flash* *Que se vean las 4 esquinas*, por ambos lados, pudiendo ser:
+
+**IFE o INE, licencia de manejo
+**Cédula profesional (no mayor a 10 años)
+**Cartilla militar (no mayor a 10 años)
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3) 
+
+*Fotografia de:
+**Medidor de luz (que se aprecien de manera clara los datos del medidor)
+**Entre calle Derecha
+**Entre calle Izquierda
+**Poste de concreto mas cercano a su domicilio
+**Fachada del domicilio
+
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx
+
+Quedo en espera.</textarea>
+      <button onclick="blueholef()">Documentación BLUE HOLE</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="esperadocs" rows="2" columns="3">
+Estimado cliente estamos a la espera de su documentación, para programar fecha de instalación de Total Play.</textarea>
+      <button onclick="esperadocsf()">Espera de Documentación </button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="carrendamiento" rows="2" columns="3">
+Apreciable cliente es necesario un contrato de arrendamiento completo y la identificación del arrendador, para dar continuidad a su trámite de instalación." id="carrendamiento">
+    <button onclick="carrendamientof()">Contrato de Arrendamiento</button>
+    
+</div>
+<div class="item">
+
+    <textarea id="statusinstalacion" rows="2" columns="3">Estimado cliente, para verificar el status de su instalación, es necesario que me proporcione su número de folio, cuenta o nombre completo, por favor.</textarea>
+      <button onclick="statusinstalacionf()">Busqueda de Status Instalación</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="factibilidad" rows="2" columns="3">
+Apreciable cliente se requiere de su identificación vigente, comprobante de domicilio actual; ubicación desde su teléfono que no sea en tiempo real; foto de la fachada de su casa y de la calle; todo ello es necesario para programar fecha de instalación.</textarea>
+      <button onclick="factibilidadf()">Factibilidad</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="ubicacion" rows="2" columns="3">
+Apreciable cliente se solicita el envío de la ubicación donde se realizará la instalación que no sea en tiempo real, esto para verificar la cobertura de su domicilio. Total Play.</textarea>
+      <button onclick="ubicacionf()">Ubicación</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="vercobertura" rows="2" columns="3">
+Apreciable cliente se solicita el envío de la ubicación donde se realizará la instalación que no sea en tiempo real, esto para verificar nuevamente la cobertura de su domicilio. Total Play.</textarea>
+      <button onclick="vercoberturaf()">Cobertura Ubicación</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="nocobertura" rows="2" columns="3">Estimado cliente, se ha validado su cobertura y lamentamos no contar con el servicio de TOTAL PLAY en su domicilio.
+Una disculpa por los inconvenientes ocasionados.</textarea>
+      <button onclick="nocoberturaf()">No Cobertura</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="dondepagar" rows="2" columns="3">Estimado cliente, el pago del servicio de Total Play lo puede hacer en:
+
+-Bancos (Santander, HSBC, Imbursa, Banco Azteca, Bancomer, Banamex) 
+
+-Autoservicio (Farmacias del ahorro, Super farmacias, Farmacias Benavides, Farmacias ABC, Farmapronto, OXXO, Seven7, Neto, Soriana, Chedraui)
+
+-NOTA: De $7 a $8 de comisión, excepto en OXXO ya que cobra una comisión de $9 pesos ya que su horario para generar el pago es de 7 AM a 11 PM de L a V.
+   
+Su estado de cuenta lo recibe a través de su correo electrónico que dejo registrado.</textarea>
+      <button onclick="dondepagarf()">Donde pagar</button>
+
+    </div>
+
+    <div class="item">
+
+      <textarea id="escuela" rows="2" columns="3">Apreciable cliente, los documentos necesarios para la contratación del servicio para una Escuela son los siguientes:
+
+**Comprobante de domicilio *no mayor a dos meses al dia de hoy* de la escuela y del director: 
+**Recibo de luz, predial, agua, gas natural (No LP), telefónico (fijo o celular), TV de paga; 
+
+
+**Identificación del director *por ambos lados* *A color NO COPIAS* *Sin flash* *Que se vean las 4 esquinas*:
+-IFE o INE, licencia de manejo
+-Cédula profesional (no mayor a 10 años)
+-Cartilla militar (no mayor a 10 años)
+-Pasaporte mexicano
+-Forma migratoria (FM2 o FM3)  
+
+**Nombramiento del director
+**Permiso para la instalación, firma y sellada por Dirección
+**Constancia de situacion fiscal de la escuela.
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx</textarea>
+      <button onclick="escuelaf()">Documentación ESCUELA</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="fisicaempresarial" rows="2" columns="3">
+Estimado cliente, los documentos requeridos para la contratación del servicio como persona moral son los siguientes: 
+
+-Comprobante de Domicilio (no mayor a 2 meses al día de hoy):
+
+**Recibo de luz, predial, agua, gas natural (No LP), telefónico (fijo o celular), TV de paga; 
+**Estados de cuenta bancarios, de tiendas departamentales, AFORE (a nombre de titular)
+**Contrato de compra-venta (completo y firmado con sellos notariales);
+**Contrato de arrendamiento (deberá incluir identificación de arrendador, estar completo, escrito a computadora y firmado con una antigüedad de por lo menos 15 días)
+
+-Identificación oficial del apoderado legal o representante legal (Vigente) *A color NO COPIAS* *Sin flash* *Que se vean las 4 esquinas*: 
+
+**IFE o INE, licencia de manejo
+**Cédula profesional (no mayor a 10 años)
+**Cartilla militar (no mayor a 10 años)
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3) 
+
+-Constancia de Situacion Fiscal, deberá incluir la dirección Fiscal (Formato PDF directamente del SAT)
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx
+
+Quedo en espera.</textarea>
+      <button onclick="fisicaempresarialf()">Documentación FISICA EMPRESARIAL</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="sindicatos" rows="2" columns="3">
+Apreciable Cliente, los documentos requeridos para la contratación del servicio como Persona Moral son los siguientes: 
+
+-Comprobante de Domicilio (no mayor a 2 meses al día de hoy):
+
+**Recibo de luz, predial, agua, gas natural (No LP), telefónico (fijo o celular), TV de paga; 
+**Estados de cuenta bancarios, de tiendas departamentales, AFORE (a nombre de titular)
+**Contrato de compra-venta (completo y firmado con sellos notariales);
+**Contrato de arrendamiento (deberá incluir identificación de arrendador, estar completo, escrito a computadora y firmado con una antigüedad de por lo menos 15 días)
+
+-Identificación oficial de Apoderado Legal o Representante Legal (Vigente) *A color NO COPIAS* *Sin flash* *Que se vean las 4 esquinas*: 
+
+**IFE o INE, licencia de manejo
+**Cédula profesional (no mayor a 10 años)
+**Cartilla militar (no mayor a 10 años)
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3) 
+
+-Constancia de Situacion Fiscal, deberá incluir la dirección Fiscal (Formato PDF directamente del SAT)
+
+-Acta constitutiva de la empresa.
+
+-Registro ante la DGRA (Dirección General de Registro de Asociaciones)
+
+En caso de enviar identificación oficial de representante legal y el mismo no se encuentra en el acta constitutiva, *deberá enviar poder notarial.*
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx
+
+Quedamos en espera.  </textarea>
+      <button onclick="sindicatosf()">Documentación SINDICATOS</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="empresarial" rows="2" columns="3">
+Apreciable Cliente, los documentos requeridos para la contratación del servicio como Persona Moral son los siguientes: 
+
+-Comprobante de Domicilio (no mayor a 2 meses al día de hoy):
+
+**Recibo de luz, predial, agua, gas natural (No LP), telefónico (fijo o celular), TV de paga; 
+**Estados de cuenta bancarios, de tiendas departamentales, AFORE (a nombre de titular)
+**Contrato de compra-venta (completo y firmado con sellos notariales);
+**Contrato de arrendamiento (deberá incluir identificación de arrendador, estar completo y firmado)
+
+-Identificación oficial de Apoderado Legal o Representante Legal (Vigente) *A color NO COPIAS* *Sin flash* *Que se vean las 4 esquinas*: 
+
+**IFE o INE, licencia de manejo
+**Cédula profesional (no mayor a 10 años)
+**Cartilla militar (no mayor a 10 años)
+**Pasaporte mexicano
+**Forma migratoria (FM2 o FM3) 
+
+-Constancia de Situacion Fiscal, deberá incluir la dirección Fiscal.
+
+-Acta constitutiva de la empresa.
+
+-RPP (Registro Público de la Propiedad y Comercio)
+
+En caso de enviar identificación oficial de representante legal y el mismo no se encuentra en el acta constitutiva, *deberá enviar poder notarial.*
+
+Otra alternativa es enviar los documentos al correo electrónico: ventas@totalplayplanes.mx
+
+Quedamos en espera. </textarea>
+      <button onclick="empresarialf()">Documentación EMPRESARIALES</button>
+
+    </div>
+    <div class="item">
+
+      <textarea id="matutino" rows="2"
+        columns="3">Estimado cliente su asesor trabaja en un turno matutino de 9:00am a 3:00 pm, en este horario se estaría poniendo en contacto con usted para finalizar su tramite de contratación, de cualquier manera en este momento ya le estamos dando el seguimiento correspondiente a su solicitud. 
+
+*POR FAVOR NO REENVIAR DOCUMENTOS A NINGUN OTRO NUMERO AUNQUE SE LOS SOLICITEN POR SEGURIDAD DE SU INFORMACION*</textarea>
+      <button onclick="matutinof()">Horario matutino </button>
+    </div>
+    <div class="item">
+
+      <textarea id="vespertino" rows="2"
+        columns="3">Estimado cliente su asesor trabaja en un turno vespertino de 3:00pm a 10:00 pm, en este horario se estaría poniendo en contacto con usted para finalizar su tramite de contratación, de cualquier manera en este momento ya le estamos dando el seguimiento correspondiente a su solicitud. 
+
+*POR FAVOR NO REENVIAR DOCUMENTOS A NINGUN OTRO NUMERO AUNQUE SE LOS SOLICITEN POR SEGURIDAD DE SU INFORMACION*</textarea>
+      <button onclick="vespertinof()">Horario vespertino </button>
+    </div>
+
+
+<div class="item">
+
+      <textarea id="status" rows="2" columns="3">Estimado cliente, para verificar el status de su instalación, es necesario que me proporcione su número de folio, cuenta o nombre completo, por favor.</textarea>
+      <button onclick="statusf()">Status cuenta</button>
+
+    </div>
+
+<div class="item">
+
+      <textarea id="huerfana" rows="2" columns="3">¿Le brindaron número de cuenta o recuerda el nombre de la persona que le atendió?
+</textarea>
+      <button onclick="huerfanaf()">HUERFANA
+</button>
+
+    </div>
+
+
+<div class="item">
+
+      <textarea id="moralmc" rows="2" columns="3">Estimado cliente, ya puede comunicarse el *REPRESENTANTE LEGAL* a Mesa de Control al número *8003300000 opción 1* para *agendar su instalación*.
+</textarea>
+      <button onclick="moralmcf()">Moral MC
+</button>
+
+    </div>
+
+<div class="item">
+
+      <textarea id="moralASAP" rows="2" columns="3">
+Estimado cliente, favor de comunicarse el *REPRESENTANTE LEGAL* a Mesa de Control al número *8003300000 opción 1* para *agendar su instalación.*
+</textarea>
+      <button onclick="moralASAPf()">Moral ASAP
+</button>
+
+    </div>
+
+<div class="item">
+
+      <textarea id="ganadas" rows="2" columns="3">Estimado cliente, Temas relacionados con su *Agendamiento y/o instalación al siguiente número 800 330 0000 opción 1. Saludos.* *Tener a la mano su número de cuenta* *Si suena una grabación favor de permanecer en línea ya que los agentes se encuentran ocupados*
+*Aquí es el área de validación de documentos.*
+</textarea>
+      <button onclick="ganadasf()">GANADAS
+</button>
+
+    </div>
+
+<div class="item">
+
+      <textarea id="creditopd" rows="2" columns="3">Estimado cliente, en caso de que Mesa de Control aún no se ponga en contacto con usted, lo invito a que se comunique al número *800 330 0000 Opción 1* para que le brinden la información completa y exacta de su instalación, ya que este número es exclusivamente para la recepción y validación de documentos.
+</textarea>
+      <button onclick="creditopdf()">PENDIENTES
+</button>
+
+    </div>
+
+
+<!--<div class="item">
+
+      <textarea id="" rows="2" columns="3">
+</textarea>
+      <button onclick="f()">
+</button>
+
+    </div>
+-->
+
+
+
+
+
+  </div>
+
+  <script>
+    const dragArea = document.querySelector(".lista");
+    new Sortable(dragArea, {
+      animation: 350
+    });
+  </script>
+
+</body>
+
+</html>
